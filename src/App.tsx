@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, Suspense, useState } from "react";
+import { ReactPictureAnnotation } from "react-picture-annotation";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import * as ReactDOM from "react-dom";
 
-function App() {
+const App = () => {
+  const [pageSize, setPageSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  const onResize = () => {
+    setPageSize({ width: window.innerWidth, height: window.innerHeight });
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  const onSelect = (selectedId: any) => console.log(selectedId);
+  const onChange = (data: any) => console.log(data);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="edit-img">
+        <ReactPictureAnnotation
+          image="https://res.cloudinary.com/duotxzytv/image/upload/v1672299338/ReadyPlayerMe-Avatar_syhogi.png"
+          onSelect={onSelect}
+          onChange={onChange}
+          width={pageSize.width}
+          height={pageSize.height}
+        />
+      </div>
     </div>
   );
-}
+};
 
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
 export default App;
