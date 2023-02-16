@@ -18,7 +18,7 @@ const App = () => {
   }, []);
 
   const onSelect = (selectedId: any) => console.log(selectedId);
-  const onChange = (data: any) => console.log(data);
+  const onChange = (data: any) => console.log("data", data);
 
   return (
     <div className="App">
@@ -27,8 +27,8 @@ const App = () => {
           image="https://res.cloudinary.com/duotxzytv/image/upload/v1672299338/ReadyPlayerMe-Avatar_syhogi.png"
           onSelect={onSelect}
           onChange={onChange}
-          width={pageSize.width}
-          height={pageSize.height}
+          width={500}
+          height={500}
         />
       </div>
     </div>
