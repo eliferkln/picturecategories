@@ -1,6 +1,5 @@
-import React, { useEffect, Suspense, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactPictureAnnotation } from "react-picture-annotation";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as ReactDOM from "react-dom";
 
 const App = () => {
